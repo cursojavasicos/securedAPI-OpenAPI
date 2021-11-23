@@ -1,0 +1,53 @@
+{
+    "scannerClass": "io.swagger.v3.jaxrs2.integration.JaxrsApplicationScanner",
+	"prettyPrint": true,
+	"cacheTTL": 0,
+	"openAPI": {
+		"info": {
+			"version": "1.0",
+			"title": "API Service REST API",
+			"description": "API REST of AWS Java Course",
+			"contact": {
+				"name" : "AWS API",
+				"url": "https://www.aws.ar",
+				"email": "aws@aws.com.ar"
+			},
+			"license": {
+				"name": "Apache 2.0",
+				"url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+			}
+		},
+		"servers": [
+			{
+				"url": "/securedAPI-OpenAPI",
+				"description": "API Services Server"
+			}
+		],
+		"components": {
+			"securitySchemes": 
+				{ "bearerAuth" : {
+	          			"type": "http",
+	          			"in": "header",
+	          			"scheme": "bearer",
+	          			"bearerFormat": "JWT",
+	          			"name": "Authorization"
+	        		},
+	        		"ApiKeyHeaderAuth" : {
+	          			"type": "apiKey",
+	          			"in": "header",
+	          			"scheme": "header",
+	          			"name": "X-API-KEY"
+	        		},
+	        		"BasicAuth" : {
+	          			"type": "http",
+	          			"in": "header",
+	          			"scheme": "basic",
+	          			"name": "Authorization"
+	        		}
+         		}
+       	}
+	},
+	"userDefinedOptions": {
+		"support.swagger.ui": true
+	}
+}

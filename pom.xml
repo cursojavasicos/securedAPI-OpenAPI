@@ -1,0 +1,173 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>ar.com.cxf</groupId>
+  <artifactId>securedAPI</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Secured API</name>
+  <url>http://maven.apache.org</url>
+  
+  <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring.version>5.3.10</spring.version>
+		<cxf.version>3.4.5</cxf.version>
+		<swagger-ui.version>4.0.1</swagger-ui.version>
+		<jackson.version>2.13.0</jackson.version>
+		<jwt.version>3.18.2</jwt.version>
+		<aspecj.version>1.9.7</aspecj.version>
+ 		<slf4j.version>2.14.1</slf4j.version>
+		<log4j.version>2.14.1</log4j.version>
+		<mariadb.version>3.0.2-rc</mariadb.version>
+ 		<javax.servlet.version>4.0.1</javax.servlet.version> 
+ 	
+ 		<maven.war.version>3.2.0</maven.war.version>
+		<maven.compiler.version>3.8.1</maven.compiler.version>
+  	
+  </properties>
+ 
+  
+  <dependencies>
+     <dependency>
+         <groupId>org.apache.cxf</groupId>
+         <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+         <version>${cxf.version}</version>
+     </dependency>
+
+     <dependency>
+         <groupId>org.apache.cxf</groupId>
+         <artifactId>cxf-rt-transports-http</artifactId>
+         <version>${cxf.version}</version>
+     </dependency>
+
+     <dependency>
+         <groupId>org.apache.cxf</groupId>
+         <artifactId>cxf-rt-rs-service-description</artifactId>
+		 <version>${cxf.version}</version>
+     </dependency>
+
+	<dependency>
+		<groupId>org.apache.cxf</groupId>
+		<artifactId>cxf-tools-common</artifactId>
+		<version>${cxf.version}</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.apache.cxf</groupId>
+	    <artifactId>cxf-rt-features-logging</artifactId>
+	    <version>${cxf.version}</version>
+	</dependency>
+
+     <dependency>
+         <groupId>org.apache.cxf</groupId>
+         <artifactId>cxf-rt-rs-service-description-openapi-v3</artifactId>
+		 <version>${cxf.version}</version>
+     </dependency>
+
+	<dependency>
+	    <groupId>org.webjars</groupId>
+	    <artifactId>swagger-ui</artifactId>
+	    <version>${swagger-ui.version}</version>
+	</dependency>
+     
+     <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-web</artifactId>
+        <version>${spring.version}</version>
+     </dependency>
+
+     <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${spring.version}</version>
+     </dependency>
+
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-jdbc</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-aop</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.mariadb.jdbc</groupId>
+	    <artifactId>mariadb-java-client</artifactId>
+	    <version>${mariadb.version}</version>
+	</dependency>
+     
+	<dependency>
+	    <groupId>com.fasterxml.jackson.jaxrs</groupId>
+	    <artifactId>jackson-jaxrs-json-provider</artifactId>
+	    <version>${jackson.version}</version>
+	</dependency>
+	  
+	<dependency>
+	    <groupId>com.auth0</groupId>
+	    <artifactId>java-jwt</artifactId>
+	    <version>${jwt.version}</version>
+	</dependency>	  
+
+	<dependency>
+	    <groupId>org.aspectj</groupId>
+	    <artifactId>aspectjweaver</artifactId>
+	    <version>${aspecj.version}</version>
+	    <scope>runtime</scope>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.aspectj</groupId>
+	    <artifactId>aspectjrt</artifactId>
+	    <version>${aspecj.version}</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-api</artifactId>
+	    <version>${log4j.version}</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-core</artifactId>
+	    <version>${log4j.version}</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-slf4j-impl</artifactId>
+	    <version>${slf4j.version}</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>javax.servlet-api</artifactId>
+		<version>${javax.servlet.version}</version>
+	    <scope>provided</scope>
+	</dependency>
+	     
+ </dependencies>  
+ 
+  <build>
+    <finalName>securedAPI-OpenAPI</finalName>
+		<plugins>
+	  		<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-war-plugin</artifactId>
+			    <version>${maven.war.version}</version>
+	  		</plugin>
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-compiler-plugin</artifactId>
+			    <version>${maven.compiler.version}</version>
+			</plugin>
+		</plugins>
+  </build>
+</project>

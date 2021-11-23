@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee           http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<display-name>Secured API OpenAPI</display-name>
+  
+	<servlet>
+		<description>Common Services</description>
+		<display-name>cxf</display-name>
+		<servlet-name>cxf</servlet-name>
+		<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>cxf</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+	
+	<filter>
+		<filter-name>Log4JLogFilter</filter-name>
+		<filter-class>ar.com.aws.api.util.logging.filter.Log4JContextFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Log4JLogFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+</web-app>

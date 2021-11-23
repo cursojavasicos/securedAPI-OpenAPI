@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	   xmlns:cxf="http://cxf.apache.org/core"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+						   http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+						   http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
+
+    <!-- JAXRS providers -->
+    <bean id="jsonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
+    
+    <bean id="multipartProvider" class="org.apache.cxf.jaxrs.provider.MultipartProvider" />
+
+	<bean id="exceptionHandler" class="ar.com.aws.api.providers.ExceptionHandler" />   
+
+  	<bean id="loggingSender" class="ar.com.aws.api.util.logging.Log4JEventSender" />
+   
+	<cxf:bus>
+        <cxf:features>
+			<bean class="org.apache.cxf.ext.logging.LoggingFeature">
+				<property name="sender" ref="loggingSender" />
+			</bean>
+        </cxf:features>
+    </cxf:bus>
+
+    <bean id="api.openapiFeature" class="org.apache.cxf.jaxrs.openapi.OpenApiFeature">
+    	<property name="scan" value="false" />
+    	<property name="useContextBasedConfig" value="true" />
+    </bean>
+
+	<jaxrs:server id="api.server" address="/">
+		<jaxrs:serviceBeans>
+			<ref bean="login.service" />
+			<ref bean="user.service" />
+			<ref bean="rol.service" />
+			<ref bean="status.service" />
+		</jaxrs:serviceBeans>
+        <jaxrs:extensionMappings>
+            <entry key="json" value="application/json" />
+            <entry key="xml" value="application/xml" />
+        </jaxrs:extensionMappings>
+        <jaxrs:features>
+        	<ref bean="api.openapiFeature" />
+        </jaxrs:features>
+        <jaxrs:providers>
+            <ref bean="jsonProvider" />
+            <ref bean="multipartProvider" />
+          	<ref bean="exceptionHandler" />  
+        </jaxrs:providers>
+	</jaxrs:server>
+
+</beans>
